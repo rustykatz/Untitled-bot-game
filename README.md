@@ -13,6 +13,20 @@ A game about robots that shoot stuff at other robots in an arena for a reason I 
 - Complete First Web GL build
 - User Testing 
 
+### Recently Added ###
+- Health packs
+- Damage boost
+- Weapon Upgrade
+
+### Priority ### 
+- Objective 
+- Score? Time 
+- Difficulty 
+- Rebuild the AI so its sentient 
+- Boss (Frog Overlord) 
+- Microtransactions 
+
+
 ## Design Doc ## 
 - Due to the rapid changing nature, I'll won't frequently update picture of the workflow sheet built using Lucid Chart
 
