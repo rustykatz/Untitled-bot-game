@@ -4,105 +4,107 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5.0f;
+    // RB and Camera 
+    Rigidbody rb; 
+    Transform cameraTransform;
 
     // Mouse Controller 
     private float mouseX;
     private float mouseY;
     private float yawH = 100f;
     private float pitchV = 100f;
-    private float xRotation = 0f;
+    public float speed = 5.0f;
+    public float jumpForce = 5f;
+    
+    // Distance of player to ground
+    [SerializeField] private float groundDistance =0.4f;
+    [SerializeField] private bool isGrounded;
+    public Transform groundCheck;
+    public LayerMask groundMask;
 
-    public float jumpForce = 5f; 
-
-    public bool isGrounded;
-
-    public GameObject bulletPrefab;
-
-    // Quad barrels 
-    public Transform bulletSpawn_RT;
-    public Transform bulletSpawn_RB;
-
-    public Transform bulletSpawn_LT;
-    public Transform bulletSpawn_LB;
-
-    public int bulletSpeed = 20; 
-
+    // Player Health Management
     public float health;
     public float maxHealth; 
     private float hperc;
 
+    // Player Gun barrel Positions
+    public Transform bulletSpawn_RT;
+    public Transform bulletSpawn_RB;
+    public Transform bulletSpawn_LT;
+    public Transform bulletSpawn_LB;
+
+    // Projectile Management 
+    public int bulletSpeed = 20; 
+    public GameObject bulletPrefab;
+
+    // Weapon Management 
+    [SerializeField] private bool weapon_1 = true;
+    [SerializeField] private bool weapon_2 = true;
+    [SerializeField] private bool weapon_3 = false;
+    [SerializeField] private bool weapon_4 = false;
+    private int impWeapons = 4;
+    public float damage;
+    public int weaponLevel;
+
+    // Respawn Location
     public GameObject respawn; 
     Vector3 respawnOffset;
 
-    // To be implemented 
-    //public List<bool> weaponManager = new List<bool>();
-    private int impWeapons = 4;
-    public float damage;
 
-    public int weaponLevel;
-
-    [SerializeField] private bool weapon_1;
-    [SerializeField] private bool weapon_2;
-    [SerializeField] private bool weapon_3;
-    [SerializeField] private bool weapon_4;
-
-    Rigidbody rb; 
-    Transform cameraTransform;
-
-    Vector3 move;
     void Start()
-    {
+    {   
+        // RB and Camera Setup
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         cameraTransform = Camera.main.transform;
 
+        // Starting Stats
         health = 10;
         maxHealth = health;
-
         weaponLevel = 1;
         damage = 1; 
 
-        weapon_1 = true;
-        weapon_2 = true;
-        weapon_3 = false;
-        weapon_4 = false; 
     }
 
-    // Update is called once per frame
     void Update()
     {
+        CheckGrounded();
         look();
-        PlayerControl();
+        WeaponFire();
         WeaponSwapper();
+        Jump();
     }
 
-    void PlayerControl()
+    void FixedUpdate(){
+        PlayerMovement();
+    }
+
+    void PlayerMovement()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            rb.MovePosition(transform.position + transform.forward * Time.fixedDeltaTime * speed);
-        }
+        Vector3 movement = Vector3.zero; 
+        if (Input.GetKey(KeyCode.W)){ movement += transform.forward;}
+        if (Input.GetKey(KeyCode.A)){ movement += transform.TransformDirection (Vector3.left);}
+        if (Input.GetKey(KeyCode.S)){ movement -= transform.forward;}
+        if (Input.GetKey(KeyCode.D)){ movement += transform.TransformDirection (Vector3.right);}
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            rb.MovePosition(transform.position + transform.right* -1 * Time.fixedDeltaTime * speed);
-        }
+        movement = Vector3.Normalize (movement);
+        movement = movement * speed;
+        rb.MovePosition (transform.position + movement * Time.fixedDeltaTime);       
+    }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            rb.MovePosition(transform.position + transform.forward * -1 * Time.fixedDeltaTime * speed);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb.MovePosition(transform.position + transform.right * Time.fixedDeltaTime * speed);
-        }
+    void CheckGrounded(){
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+    }
+
+    void Jump(){
+         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+    }
 
+    void WeaponFire(){
         if(Input.GetMouseButtonDown(1) && weapon_1)
         {
             ShootRightWeapon();
@@ -157,25 +159,17 @@ public class Player : MonoBehaviour
         transform.eulerAngles = new Vector3(-mouseY, mouseX,0f);
     }   
 
-
     // Collision for items 
-    void OnCollisionEnter(Collision col){
-        if(col.gameObject.tag == "Floor" ){
-            isGrounded = true;
-        }
-        else if(col.gameObject.tag == "Damage_Item")
-        {
-            print("Damage item picked up!");
-            Destroy(col.gameObject);
-        }
-    }
-    void OnCollisionExit(Collision col){
-        if(col.gameObject.tag == "Floor" ){
-            isGrounded = false; 
-        }
-    }
-
-
+    // void OnCollisionEnter(Collision col){
+    //     if(col.gameObject.tag == "Floor" ){
+    //         isGrounded = true;
+    //     }
+    // }
+    // void OnCollisionExit(Collision col){
+    //     if(col.gameObject.tag == "Floor" ){
+    //         isGrounded = false; 
+    //     }
+    // }
 
     void ShootRightWeapon(){
         // Create the Bullet from the Bullet Prefab
@@ -243,8 +237,7 @@ public class Player : MonoBehaviour
             // Destroy(gameObject);
             //hperc = 0;
             // hp.SetSize(hperc);
-        }
-        
+        }  
         print("Player HP: " + health.ToString()); 
     }
 

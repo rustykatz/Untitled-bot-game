@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Pickup_Damage : MonoBehaviour
 {
-    [SerializeField] private int dmg = 1;
+    [SerializeField] private int dmgAmount = 1;
 
     void OnTriggerEnter(Collider coll){
         if(coll.gameObject.tag == "Player")
         {
-            coll.GetComponent<Player>().BoostDamage(dmg);
-            print("PICKED UP: Damage boost player by -> + " + dmg.ToString());
+            coll.GetComponent<Player>().BoostDamage(dmgAmount);
+            print("PICKED UP: Damage boost player by -> + " + dmgAmount.ToString());
             Destroy(gameObject);
         }
     }

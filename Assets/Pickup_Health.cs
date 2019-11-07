@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Pickup_Health : MonoBehaviour
 {
-    private int hp = 1;
+    [SerializeField] private int healAmount = 1;
 
     void OnTriggerEnter(Collider coll){
         if(coll.gameObject.tag == "Player")
         {
-            coll.GetComponent<Player>().Heal(hp);
-            print("PICKED UP: Healing player by -> + " + hp.ToString());
+            coll.GetComponent<Player>().Heal(healAmount);
+            print("PICKED UP: Healing player by -> + " + healAmount.ToString());
             Destroy(gameObject);
         }
     }
-
 }

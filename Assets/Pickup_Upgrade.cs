@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Pickup_Upgrade : MonoBehaviour
 {
-    [SerializeField] private int upgrade = 1;
+    [SerializeField] private int upgradeAmount = 1;
 
     void OnTriggerEnter(Collider coll){
         if(coll.gameObject.tag == "Player")
         {
-            coll.GetComponent<Player>().WeaponUpgrade(upgrade);
-            print("PICKED UP: Weapon Upgrade Level by -> + " + upgrade.ToString());
+            coll.GetComponent<Player>().WeaponUpgrade(upgradeAmount);
+            print("PICKED UP: Weapon Upgrade Level by -> + " + upgradeAmount.ToString());
             Destroy(gameObject);
         }
     }
