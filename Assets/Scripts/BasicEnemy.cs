@@ -19,11 +19,12 @@ public class BasicEnemy : MonoBehaviour
     Vector3 knockBack; 
     Vector3 targetPos; 
 
+
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         NavAgentSetup();
-    
 
     }
 
@@ -89,4 +90,5 @@ public class BasicEnemy : MonoBehaviour
        }
     }
 
+ 
 }

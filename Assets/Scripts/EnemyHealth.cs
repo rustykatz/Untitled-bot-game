@@ -10,11 +10,19 @@ public class EnemyHealth : MonoBehaviour {
     private float health;
     private float hperc; 
   
+    // public GameHandler gameHandler;
+    GameObject gameHandler;
+
+    public int points = 5;
+
 	void Awake(){
+        points = 5;
         health = 10;
         totalHealth = health;
         print("Health: " + health.ToString());
         print("Total Health: " + totalHealth.ToString());
+      
+        gameHandler = GameObject.FindGameObjectWithTag("Game_Handler");
     }
 
     // Damage handling 
@@ -27,15 +35,19 @@ public class EnemyHealth : MonoBehaviour {
         }
         else
         {
+            hp.SetSize(0);
+            OnDeath(points);
             Destroy(gameObject);
-            hperc = 0;
-            hp.SetSize(hperc);
         }
         
         print("Enemy HP: " + health.ToString()); 
         
-        // Update HP bar
-        // hp.SetSize(hperc);
     }
+
+    void OnDeath(int points){
+        gameHandler.GetComponent<GameHandler>().AddScore(points);
+
+    }
+
 
 }

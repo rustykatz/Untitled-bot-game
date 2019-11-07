@@ -621,6 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: {fileID: 1696526025}
+  gameHandler: {fileID: 0}
 --- !u!195 &686835787020470096
 NavMeshAgent:
   m_ObjectHideFlags: 0
