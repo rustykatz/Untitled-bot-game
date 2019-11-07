@@ -7,17 +7,15 @@ public class EnemyHealth : MonoBehaviour {
 
     [SerializeField] private HealthBar hp; 
     private float totalHealth; 
-    private float health;
+    public float health =10;
     private float hperc; 
   
     // public GameHandler gameHandler;
     GameObject gameHandler;
-
     public int points = 5;
+    public float diffFactor = 0.01f;
 
 	void Awake(){
-        points = 5;
-        health = 10;
         totalHealth = health;
         print("Health: " + health.ToString());
         print("Total Health: " + totalHealth.ToString());
@@ -46,8 +44,7 @@ public class EnemyHealth : MonoBehaviour {
 
     void OnDeath(int points){
         gameHandler.GetComponent<GameHandler>().AddScore(points);
+        gameHandler.GetComponent<GameHandler>().AddDifficulty(diffFactor);
 
     }
-
-
 }

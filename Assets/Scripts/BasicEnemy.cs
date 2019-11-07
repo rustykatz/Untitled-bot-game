@@ -12,6 +12,8 @@ public class BasicEnemy : MonoBehaviour
     public float impulseForce = 2.0f;
     public float maxDistance;
 
+    public float eSpeed = 2.0f;
+
     public int dmg = 1; 
     float damageTimer = 0; 
     bool canAttack = true;
@@ -45,6 +47,7 @@ public class BasicEnemy : MonoBehaviour
     public bool CheckRange(){
         if(Vector3.Distance(transform.position,  target.transform.position) < maxDistance){
             navAgent.destination = target.transform.position;
+            navAgent.speed = eSpeed; 
             // print("BASIC ENEMY: Target in range. Moving towards Target.");
             return true;
         }

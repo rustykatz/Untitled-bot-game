@@ -12,7 +12,11 @@ public class GameHandler : MonoBehaviour
     public bool diffTimerRun;
     public float diffTimer = 0f;
 
+    public float difficulty =1; 
+
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI difficultyText; 
+
     public int score; 
 
 
@@ -29,26 +33,40 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateText();
+        if(gameRunning == true){
+            diffTimerRun = true; 
+        }
+        else{ 
+            diffTimerRun = false; 
+        }
+        if(diffTimerRun == true){
+            StartCoroutine(DifficultyScale());
+        }
+    }
+
+    void UpdateText(){
         scoreText.GetComponent<TextMeshProUGUI>().SetText("Score: " + score.ToString()); 
-    //     if(gameRunning == true){
-    //         diffTimerRun = true; 
-    //     }
-    //     else{ 
-    //         diffTimerRun = false; 
-    //     }
-    //     if(diffTimerRun == true){
-    //         StartCoroutine(DifficultyScale());
-    //     }
+        difficultyText.GetComponent<TextMeshProUGUI>().SetText("Difficulty: " + difficulty.ToString()); 
+
     }
 
     IEnumerator DifficultyScale(){
-
         diffTimer += 1;
+        if(diffTimer >60){
+            difficulty += 0.01f;
+            diffTimer = 0;
+            print("Increasing diff");
+        }
         yield return new WaitForSeconds(1);
         
     }
 
     public void AddScore(int _score){
         score += _score;
+    }
+
+    public void AddDifficulty(float _diff){
+        difficulty += _diff;
     }
 }

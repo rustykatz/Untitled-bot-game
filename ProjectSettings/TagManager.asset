@@ -11,6 +11,7 @@ TagManager:
   - Item_Health
   - Item_Upgrade
   - Item_Damage
+  - Game_Handler
   layers:
   - Default
   - TransparentFX
