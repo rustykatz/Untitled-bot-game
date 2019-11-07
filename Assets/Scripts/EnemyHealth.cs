@@ -17,8 +17,8 @@ public class EnemyHealth : MonoBehaviour {
 
 	void Awake(){
         totalHealth = health;
-        print("Health: " + health.ToString());
-        print("Total Health: " + totalHealth.ToString());
+        // print("Health: " + health.ToString());
+        // print("Total Health: " + totalHealth.ToString());
       
         gameHandler = GameObject.FindGameObjectWithTag("Game_Handler");
     }
@@ -38,7 +38,7 @@ public class EnemyHealth : MonoBehaviour {
             Destroy(gameObject);
         }
         
-        print("Enemy HP: " + health.ToString()); 
+        // print("Enemy HP: " + health.ToString()); 
         
     }
 

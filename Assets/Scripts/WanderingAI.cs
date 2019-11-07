@@ -24,8 +24,7 @@ public class WanderingAI : MonoBehaviour {
         if (timer >= wanderTimer) {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
             agent.destination = newPos;
-            print("new Pos");
-            // agent.SetDestination(newPos);
+            // print("new Pos");
             timer = 0;
         }
     }
@@ -35,7 +34,7 @@ public class WanderingAI : MonoBehaviour {
         randDirection += origin;
         NavMeshHit navHit;
         NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
-        print("Random Nav Sphere");
+        // print("Random Nav Sphere");
         return navHit.position;
     }
 }

@@ -56,10 +56,9 @@ public class GameHandler : MonoBehaviour
         if(diffTimer >60){
             difficulty += 0.01f;
             diffTimer = 0;
-            print("Increasing diff");
+            // print("Increasing difficulty!");
         }
         yield return new WaitForSeconds(1);
-        
     }
 
     public void AddScore(int _score){

@@ -35,7 +35,7 @@ public class BasicEnemy : MonoBehaviour
     {
         CheckRange();
         if(canAttack == false){
-            damageCooldown();
+            StartCoroutine(damageCooldown());
         }
     }
 
@@ -57,15 +57,13 @@ public class BasicEnemy : MonoBehaviour
 
         }
     }
-    void damageCooldown(){
-        damageTimer += Time.deltaTime;
-        if(damageTimer > 0.5){
-            canAttack = true; 
+    IEnumerator damageCooldown(){
+        damageTimer += 1;
+        if(damageTimer > 10){
+            canAttack = true;
             damageTimer = 0;
-            // print("can attack");
         }
-        
-        
+        yield return new WaitForSeconds(1);
     }
 
      // Check collision with player
@@ -75,7 +73,6 @@ public class BasicEnemy : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * impulseForce * 2, ForceMode.Impulse);
             
-
             if(canAttack == true){
                 print("Damaging Player");
                 collision.gameObject.GetComponent<Player>().TakeDamage(dmg);

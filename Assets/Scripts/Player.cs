@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
     public float health;
     public float maxHealth; 
     private float hperc;
+    public TextMeshProUGUI hpText;
 
     // Player Gun barrel Positions
     public Transform bulletSpawn_RT;
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
     // Projectile Management 
     public int bulletSpeed = 20; 
     public GameObject bulletPrefab;
+    public float spreadFactor = 100f; 
 
     // Weapon Management 
     [SerializeField] private bool weapon_1 = true;
@@ -73,6 +77,7 @@ public class Player : MonoBehaviour
         WeaponFire();
         WeaponSwapper();
         Jump();
+        hpText.GetComponent<TextMeshProUGUI>().SetText("HP: " + health.ToString());
     }
 
     void FixedUpdate(){
@@ -193,17 +198,35 @@ public class Player : MonoBehaviour
         }
     }
     void ShootLeftWeapon(){
+        
+        var rX = Random.Range(-spreadFactor, spreadFactor);
+        var rY = Random.Range(-spreadFactor, spreadFactor);
+        var rZ = Random.Range(-spreadFactor, spreadFactor);
+        // rO is offset factor used to randomize second shot so both shots don't hit same place. Saves comp time of calc 3 new rand vars
+        var rO = Random.Range(-spreadFactor/2, spreadFactor/2);
+
         var bulletTop = (GameObject)Instantiate(bulletPrefab, bulletSpawn_LT.position, bulletSpawn_LT.rotation);
-        bulletTop.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 10f);
+        // bulletTop.GetComponent<Transform>().Rotate(randomNumberX, randomNumberY, randomNumberZ);
+        bulletTop.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 10f + new Vector3 (rX, rY, rZ));
         Destroy(bulletTop, 3.0f);
 
         if(weapon_4 == true){
             var bulletBot = (GameObject)Instantiate(bulletPrefab, bulletSpawn_LB.position, bulletSpawn_LB.rotation);
-            bulletBot.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 10f);
+            bulletBot.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 10f + new Vector3(rX +rO, rZ + rO, rY +rO));
             Destroy(bulletBot, 3.0f);
         }
        
     }
+
+ 
+    //  var bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+    //  bullet.transform.Rotate(
+    //  bullet.rigidbody.AddForce(bullet.transform.forward * 10000);
+
+
+
+
+
 
     public void WeaponUpgrade(int _upgrade){
         weaponLevel += _upgrade; 
@@ -226,7 +249,6 @@ public class Player : MonoBehaviour
         if(health > 0.01){
             health -= damage;
             hperc = health/ maxHealth + 0.05f;
-            // hp.SetSize(hperc);
         }
         else
         {
@@ -235,10 +257,7 @@ public class Player : MonoBehaviour
             print("Health reset: " + health.ToString());
             maxHealth = health;
             // Destroy(gameObject);
-            //hperc = 0;
-            // hp.SetSize(hperc);
         }  
-        print("Player HP: " + health.ToString()); 
     }
 
 }
