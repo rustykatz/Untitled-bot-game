@@ -4,14 +4,14 @@ A game about robots that shoot stuff at other robots in an arena for a reason I 
 
 
 ## Abstract To Do List ##
-- Finish basic game mechanics
-- Implement UI
-- Sound Design
-- Level Design
-- Menu Navigation
-- Settings Option
-- Complete First Web GL build
-- User Testing 
+- [x] Finish basic game mechanics
+- [ ] Implement UI
+- [ ] Sound Design
+- [ ] Level Design
+- [ ] Menu Navigation
+- [ ] Settings Option
+- [ ] Complete First Web GL build
+- [ ] User Testing 
 
 ### Recently Added ###
 - Health packs
@@ -25,7 +25,6 @@ A game about robots that shoot stuff at other robots in an arena for a reason I 
 - Rebuild the AI so its sentient 
 - Boss (Frog Overlord) 
 - Microtransactions 
-
 
 ## Design Doc ## 
 - Due to the rapid changing nature, I'll won't frequently update picture of the workflow sheet built using Lucid Chart
