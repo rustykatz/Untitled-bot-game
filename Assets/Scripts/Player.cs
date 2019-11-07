@@ -28,9 +28,8 @@ public class Player : MonoBehaviour
 
     public int bulletSpeed = 20; 
 
-
     public float health;
-    public float totalHealth; 
+    public float maxHealth; 
     private float hperc;
 
     public GameObject respawn; 
@@ -39,6 +38,9 @@ public class Player : MonoBehaviour
     // To be implemented 
     //public List<bool> weaponManager = new List<bool>();
     private int impWeapons = 4;
+    public float damage;
+
+    public int weaponLevel;
 
     [SerializeField] private bool weapon_1;
     [SerializeField] private bool weapon_2;
@@ -56,10 +58,13 @@ public class Player : MonoBehaviour
         cameraTransform = Camera.main.transform;
 
         health = 10;
-        totalHealth = health;
+        maxHealth = health;
+
+        weaponLevel = 1;
+        damage = 1; 
 
         weapon_1 = true;
-        weapon_2 = false;
+        weapon_2 = true;
         weapon_3 = false;
         weapon_4 = false; 
     }
@@ -98,11 +103,11 @@ public class Player : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        if(Input.GetMouseButtonDown(0) && weapon_1)
+        if(Input.GetMouseButtonDown(1) && weapon_1)
         {
             ShootRightWeapon();
         }
-        if(Input.GetMouseButtonDown(1) && weapon_2)
+        if(Input.GetMouseButtonDown(0) && weapon_2)
         {
             ShootLeftWeapon();
         }
@@ -158,12 +163,6 @@ public class Player : MonoBehaviour
         if(col.gameObject.tag == "Floor" ){
             isGrounded = true;
         }
-        else if(col.gameObject.tag == "Health_Item")
-        {
-             // Do soemthing
-            print("Health item picked up!");
-            Destroy(col.gameObject);
-        }
         else if(col.gameObject.tag == "Damage_Item")
         {
             print("Damage item picked up!");
@@ -175,6 +174,8 @@ public class Player : MonoBehaviour
             isGrounded = false; 
         }
     }
+
+
 
     void ShootRightWeapon(){
         // Create the Bullet from the Bullet Prefab
@@ -209,12 +210,28 @@ public class Player : MonoBehaviour
         }
        
     }
-    
 
+    public void WeaponUpgrade(int _upgrade){
+        weaponLevel += _upgrade; 
+        print("PLAYER: Weapon Level -> " + weaponLevel.ToString());
+    }
+
+    public void Heal(float _heal){
+        health += _heal; 
+        if( health > maxHealth ){
+            health = maxHealth;
+        }
+    }
+
+    public void BoostDamage(float _boost){
+        damage += _boost;
+        print("PLAYER: Weapon Damage -> " + damage.ToString());
+    }
+    
     public void TakeDamage(float damage){
         if(health > 0.01){
             health -= damage;
-            hperc = health/ totalHealth + 0.05f;
+            hperc = health/ maxHealth + 0.05f;
             // hp.SetSize(hperc);
         }
         else
@@ -222,7 +239,7 @@ public class Player : MonoBehaviour
             gameObject.transform.position = respawn.transform.position + respawnOffset;
             health = 10;
             print("Health reset: " + health.ToString());
-            totalHealth = health;
+            maxHealth = health;
             // Destroy(gameObject);
             //hperc = 0;
             // hp.SetSize(hperc);

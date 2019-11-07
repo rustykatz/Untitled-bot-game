@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Projectile
   - Item
+  - Item_Health
+  - Item_Upgrade
+  - Item_Damage
   layers:
   - Default
   - TransparentFX

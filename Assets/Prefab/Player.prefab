@@ -630,13 +630,13 @@ MonoBehaviour:
   isGrounded: 0
   bulletPrefab: {fileID: 1797537930692371259, guid: 110d4a4494d2140179e6147f56526812,
     type: 3}
-  bulletSpawn_RT: {fileID: 0}
-  bulletSpawn_LT: {fileID: 0}
-  bulletSpawn_RB: {fileID: 0}
-  bulletSpawn_LB: {fileID: 0}
+  bulletSpawn_RT: {fileID: 1139201452365951058}
+  bulletSpawn_RB: {fileID: 4398496756673864705}
+  bulletSpawn_LT: {fileID: 5085121241934529741}
+  bulletSpawn_LB: {fileID: 377575888129822917}
   bulletSpeed: 120
   health: 0
-  totalHealth: 0
+  maxHealth: 0
   respawn: {fileID: 0}
   weapon_1: 0
   weapon_2: 0
