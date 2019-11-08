@@ -34,6 +34,7 @@ To try this game, a Web GL build will be incrementally uploaded to the following
 - Health, Difficulty, Score UI
 - New Enemy and wandering AI
 - Bullet Spread 
+- Boss model
 
 
 ### Priority ### 
