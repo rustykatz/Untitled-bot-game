@@ -19,7 +19,7 @@ To try this game, a Web GL build will be incrementally uploaded to the following
 
 ## Abstract To Do List ##
 - [x] Finish basic game mechanics
-- [ ] Implement UI
+- [x] Implement basic UI
 - [ ] Sound Design
 - [ ] Level Design
 - [ ] Menu Navigation
@@ -31,12 +31,13 @@ To try this game, a Web GL build will be incrementally uploaded to the following
 - Health packs
 - Damage boost
 - Weapon Upgrade
+- Health, Difficulty, Score UI
+- New Enemy and wandering AI
+- Bullet Spread 
+
 
 ### Priority ### 
 - Objective 
-- Score? Time 
-- Difficulty 
-- Rebuild the AI so its sentient 
 - Boss (Frog Overlord) 
 - Microtransactions 
 
