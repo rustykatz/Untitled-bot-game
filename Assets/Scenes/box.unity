@@ -4330,7 +4330,7 @@ Light:
   serializedVersion: 9
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 1.4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
@@ -35904,6 +35904,11 @@ PrefabInstance:
       propertyPath: respawn
       value: 
       objectReference: {fileID: 815138822}
+    - target: {fileID: 3826968747507142614, guid: ae39da0fcdafa41ed82f9ccb4b2c5277,
+        type: 3}
+      propertyPath: hpText
+      value: 
+      objectReference: {fileID: 1298265965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae39da0fcdafa41ed82f9ccb4b2c5277, type: 3}
 --- !u!43 &1801819502

@@ -42,10 +42,10 @@ public class Player : MonoBehaviour
     public float spreadFactor = 100f; 
 
     // Weapon Management 
-    [SerializeField] private bool weapon_1 = true;
-    [SerializeField] private bool weapon_2 = true;
-    [SerializeField] private bool weapon_3 = false;
-    [SerializeField] private bool weapon_4 = false;
+    [SerializeField] private bool weapon_1;
+    [SerializeField] private bool weapon_2;
+    [SerializeField] private bool weapon_3;
+    [SerializeField] private bool weapon_4;
     private int impWeapons = 4;
     public float damage;
     public int weaponLevel;
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {   
+        
         // RB and Camera Setup
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
