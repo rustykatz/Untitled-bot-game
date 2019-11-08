@@ -17,17 +17,28 @@ To try this game, a Web GL build will be incrementally uploaded to the following
   1) CASE: Scene is blank. In Unity select Assets folder -> Scenes -> Menu 
   2) CASE: Scene isn't blank. Hit the big play button in the top middle of the screen to play
 
-## Abstract To Do List ##
+## Abstract Things Left Before First Web Gl Build ##
 - [x] Finish basic game mechanics
-- [x] Implement basic UI
-- [ ] Sound Design
-- [ ] Level Design
-- [ ] Menu Navigation
-- [ ] Settings Option
-- [ ] Complete First Web GL build
-- [ ] User Testing 
+- [ ] Implement basic UI
+- [ ] Game objective
+- [ ] Level design
+- [ ] Menu mavigation
+- [ ] User testing & peer feedback
 
-### Recently Added ###
+### High Priority ###
+- Create an objective for the game
+- Finish maze map layout
+- Clean up UI 
+
+### Low Priority ###
+- Special weapons
+- Sound design
+- Rework level lighting 
+- Particles and effects
+- Character animations
+- Settings menu
+
+## Recently Added Features ##
 - Health packs
 - Damage boost
 - Weapon Upgrade
@@ -36,11 +47,6 @@ To try this game, a Web GL build will be incrementally uploaded to the following
 - Bullet Spread 
 - Boss model
 
-
-### Priority ### 
-- Objective 
-- Boss (Frog Overlord) 
-- Microtransactions 
 
 ## Design Doc ## 
 - Due to the rapid changing nature, design doc built using Lucid Chart will be infrequently updated here.
