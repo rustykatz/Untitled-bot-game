@@ -2,7 +2,7 @@
 A game where robots compete against one another in an arena. A narrative for this game will be added at a later date.
 
 ## Build Instructions ##
-To try this game, a Web GL build will be incrementally uploaded to the following link: 
+To try this game, a WebGL build will be incrementally uploaded to the following link: 
 
 | URL  | Version | Date Updated |
 | ---- | ------- | ------------ | 
@@ -48,7 +48,7 @@ To try this game, a Web GL build will be incrementally uploaded to the following
 
 
 ## Design Doc ## 
-- Due to the rapid changing nature, design doc built using Lucid Chart will be infrequently updated here.
+- Due to the rapid changing nature, design document built using Lucid Chart will be infrequently updated here.
 
 ## Build Dependencies ##
 
