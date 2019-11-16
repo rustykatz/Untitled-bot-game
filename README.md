@@ -1,16 +1,15 @@
 # Untitled Bot Game
-
-A game about robots that shoot stuff at other robots in an arena for a reason I have yet to come up with as I'm currently lacking creative juices to think of a creative narrative. 
+A game where robots compete against one another in an arena. A narrative for this game will be added at a later date.
 
 ## Build Instructions ##
-To try this game, a Web GL build will be incrementally uploaded to the following link: 
+To try this game, a WebGL build will be incrementally uploaded to the following link: 
 
 | URL  | Version | Date Updated |
 | ---- | ------- | ------------ | 
 | N/A | 1.0 | N/A | 
 
-1) Please install/ use the version of Unity specified in Build Dependencies
-2) Download/ Fork this this repo
+1) Please install or use the version of Unity specified in Build Dependencies
+2) Download or fork this this repo
 3) Open Unity and navigate to the project folder 
 4) Select and open project folder titled "Untitled-bot-Game" 
 5) Once Unity is open:
@@ -49,7 +48,7 @@ To try this game, a Web GL build will be incrementally uploaded to the following
 
 
 ## Design Doc ## 
-- Due to the rapid changing nature, design doc built using Lucid Chart will be infrequently updated here.
+- Due to the rapid changing nature, design document built using Lucid Chart will be infrequently updated here.
 
 ## Build Dependencies ##
 
